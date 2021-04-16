@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TicketManagement.Application.Features.Events
+namespace TicketManagement.Application.Features.Events.Queries.GetEventDetail
 {
     public class CategoryDto
     {

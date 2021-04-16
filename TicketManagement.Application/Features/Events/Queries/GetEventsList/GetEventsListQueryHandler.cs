@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using TicketManagement.Application.Contracts.Persistence;
 using TicketManagement.Domain.Entities;
 
-namespace TicketManagement.Application.Features.Events
+namespace TicketManagement.Application.Features.Events.Queries.GetEventsList
 {
     public class GetEventsListQueryHandler : IRequestHandler<GetEventsListQuery, List<EventListViewModel>>
     {
