@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using TicketManagement.Application.Features.Categories.Commands;
 using TicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
 using TicketManagement.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using TicketManagement.Application.Features.Events.Commands.CreateEvent;
@@ -22,6 +23,8 @@ namespace TicketManagement.Application.Profiles
 
             CreateMap<Event, CreateEventCommand>();
             CreateMap<Event, UpdateEventCommand>();
+
+            CreateMap<Category, CreateCategoryCommand>();
         }
     }
 }

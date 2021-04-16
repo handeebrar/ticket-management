@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TicketManagement.Application.Contracts.Persistence;
@@ -23,6 +21,14 @@ namespace TicketManagement.Application.Features.Events.Commands.CreateEvent
 
         public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
         {
+            var validator = new CreateEventCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (validationResult.Errors.Count > 0)
+            {
+                throw new Exceptions.ValidationException(validationResult);
+            }
+
             var @event = _mapper.Map<Event>(request);
             @event = await _eventRepository.AddAsync(@event);
 
