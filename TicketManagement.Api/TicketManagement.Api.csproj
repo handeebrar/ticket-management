@@ -10,6 +10,13 @@
     <ProjectReference Include="..\TicketManagement.Persistence\TicketManagement.Persistence.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
   <ItemGroup>
     <Folder Include="Controllers\" />
   </ItemGroup>
