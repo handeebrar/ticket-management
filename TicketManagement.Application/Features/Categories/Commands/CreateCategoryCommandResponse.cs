@@ -9,6 +9,6 @@ namespace TicketManagement.Application.Features.Categories.Commands
 
         }
 
-        public CreateCategoryDto Category { get; internal set; }
+        public CreateCategoryDto Category { get; set; }
     }
 }
