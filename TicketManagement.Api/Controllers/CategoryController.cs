@@ -32,7 +32,7 @@ namespace TicketManagement.Api.Controllers
         [HttpGet("allwithevents", Name = "GetCategoriesWithEvents")]
         [ProducesDefaultResponseType]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<CategoryListViewModel>>> GetCategoriesWithEvents(bool includeHistory)
+        public async Task<ActionResult<List<CategoryEventListViewModel>>> GetCategoriesWithEvents(bool includeHistory)
         {
             var getCategoriesListWithEventsQuery = new GetCategoriesListWithEventsQuery() { IncludeHistory = includeHistory };
             var dtos = await _mediator.Send(getCategoriesListWithEventsQuery);

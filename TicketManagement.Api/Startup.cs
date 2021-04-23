@@ -19,6 +19,8 @@ namespace TicketManagement.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            AddSwagger(services);
+
             services.AddApplicationServices();
             services.AddInfrastructureServices(Configuration);
             services.AddPersistenceServices(Configuration);
@@ -27,6 +29,18 @@ namespace TicketManagement.Api
             services.AddCors(options => 
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+        }
+
+        private void AddSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo 
+                {
+                    Version = "v1",
+                    Title = "Ticket Management API",
+                });
             });
         }
 
@@ -40,6 +54,12 @@ namespace TicketManagement.Api
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => 
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ticket Management API");
+            });
 
             app.UseCors("Open");
 
