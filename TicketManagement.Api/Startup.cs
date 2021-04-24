@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TicketManagement.Api.Middleware;
 using TicketManagement.Application;
 using TicketManagement.Infrastructure;
 using TicketManagement.Persistence;
@@ -60,6 +61,8 @@ namespace TicketManagement.Api
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ticket Management API");
             });
+
+            app.UseCustomExceptionHandler();
 
             app.UseCors("Open");
 

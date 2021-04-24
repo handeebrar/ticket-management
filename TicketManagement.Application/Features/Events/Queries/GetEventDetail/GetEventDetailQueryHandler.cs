@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TicketManagement.Application.Contracts.Persistence;
+using TicketManagement.Application.Exceptions;
 using TicketManagement.Domain.Entities;
 
 namespace TicketManagement.Application.Features.Events.Queries.GetEventDetail
@@ -26,9 +27,15 @@ namespace TicketManagement.Application.Features.Events.Queries.GetEventDetail
         public async Task<EventDetailViewModel> Handle(GetEventDetailQuery request, CancellationToken cancellationToken)
         {
             var @event = await _eventRepository.GetByIdAsync(request.Id);
-            var eventDetailDto = _mapper.Map<EventDetailViewModel>(@event);
 
+            if (@event == null)
+            {
+                throw new NotFoundException(nameof(Event), request.Id);
+            }
+
+            var eventDetailDto = _mapper.Map<EventDetailViewModel>(@event);
             var category = await _categoryRepository.GetByIdAsync(@event.CategoryId);
+
             eventDetailDto.Category = _mapper.Map<CategoryDto>(category);
 
             return eventDetailDto;
